@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Notes</title>
+    <script src="js/cdn.tailwindcss.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50">
+    <header>
+        <!-- Полноценный хэдер (если страница на самом верху) -->
+        <div class="bg-gray-100 py-10">
+            <!-- Когда настройки закрыты -->
+             <div class="text-center">
+                <h1 class="text-gray-950 text-5xl font-bold">My Notes</h1>
+                <h2 class="text-gray-600 text-2xl font-medium my-5">
+                    A simple and user-friendly<br> application for your notes
+                </h2>
+                <div class="flex gap-3 justify-center items-center mt-8 hover:cursor-pointer">
+                    <img src="img/add-note-black.svg">
+                    <span class="font-bold text-2xl text-gray-900">Create Note</span>
+                </div>
+             </div>
+        </div>
+    </header>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-x-8 gap-y-14 mt-12 w-11/12 mx-auto text-gray-950">
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">Сегодня</p>
+                <div class="bg-beige rounded-2xl p-8 h-max min-h-60">
+                    <h3 class="font-bold text-2xl">Как сделать омлет</h3>
+                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">Вчера</p>
+                <div class="bg-violet rounded-2xl p-8 min-h-60">
+                    <h3 class="font-bold text-2xl">Моё путешествие в глубины космоса и пыли</h3>
+                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">19 Янв.</p>
+                <div class="bg-blue rounded-2xl p-8 min-h-60">
+                    <h3 class="font-bold text-2xl">About Me</h3>
+                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">04 Мар.</p>
+                <div class="bg-red rounded-2xl p-8">
+                    <h3 class="font-bold text-2xl">Как сделать омлет</h3>
+                    <p class="text-xl font-medium mt-4">берём 2-4 яйца, затем взбиваем их и кладём на сковородку, перед прожаркой не забудьте добавить своё унылое лицо. Потому что унылый омлет всегда готовится с унылым лицом, стыдно этого не знать.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">21 Окт. 2024</p>
+                <div class="bg-green rounded-2xl p-8">
+                    <h3 class="font-bold text-2xl">About Me</h3>
+                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="flex items-center">
+            <div>
+                <p class="text-right font-semibold mr-4 mb-1">01 Апр. 2008</p>
+                <div class="bg-black text-white rounded-2xl p-8">
+                    <h3 class="font-bold text-2xl">Моё путешествие в глубины космоса и пыли</h3>
+                    <p class="text-xl font-medium mt-4">Вчера я решил попробовать
+                        некое вещество, которое дал мне алхимик. Боже, это было невероятно. Таких сильных глюков я ещё никогда в жизни не видел! Рекомендую!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 mt-16 py-4">
+        Тестовая работа по React
+    </footer>
+
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              screens: {
+                '3xl': '1720px'
+              },
+              
+              colors: {
+                /* Цвета для карточек с заметками */
+                beige: '#FACB89',  // бежевый
+                violet: '#E49FFF',
+                blue: '#ACDFF9',
+                red: '#F3ABAB',
+                green: '#C6FFAB',
+                black: '#585858'
+              },
+              fontFamily: {
+                // roboto: ["roboto", "sans-serif"]
+              }
+            }
+          }
+        }
+      </script>
+</body>
+</html>
