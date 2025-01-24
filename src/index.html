@@ -10,9 +10,9 @@
 <body class="bg-slate-50">
     <header>
         <!-- Полноценный хэдер (если страница на самом верху) -->
-        <div class="bg-gray-100 py-10">
+        <div class="bg-gray-100 h-72">
             <!-- Когда настройки закрыты -->
-             <div class="text-center">
+             <div class="text-center py-10">
                 <h1 class="text-gray-950 text-5xl font-bold">My Notes</h1>
                 <h2 class="text-gray-600 text-2xl font-medium my-5">
                     A simple and user-friendly<br> application for your notes
@@ -22,74 +22,83 @@
                     <span class="font-bold text-2xl text-gray-900">Create Note</span>
                 </div>
              </div>
+             
+             <!-- примени grid-row в медиа-запросе -->
+
+             <!-- Когда настройки открыты -->
+             <!-- <div class="text-center py-10 bg-softBlack text-white h-full">
+                <h1 class="text-5xl font-bold">Settings</h1>
+                <div class="flex justify-center mt-10">
+                    <span class="max-w-60">The bird looks at you closely, waiting for an answer.</span>
+                    <div class="div">
+                        <p>Font Size</p>
+                        - 24px +
+                    </div>
+                </div>
+                <div class="">
+                    <p>Theme</p>
+                    переключатель
+                </div>
+             </div> -->
         </div>
     </header>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-x-8 gap-y-14 mt-12 w-11/12 mx-auto text-gray-950">
-        <div class="flex items-center">
-            <div>
-                <p class="text-right font-semibold mr-4 mb-1">Сегодня</p>
-                <div class="bg-beige rounded-2xl p-8 h-max min-h-60">
-                    <h3 class="font-bold text-2xl">Как сделать омлет</h3>
-                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
-                </div>
+        <div>
+            <p class="text-right font-semibold mr-4 mb-1">Сегодня</p>
+            <div class="bg-beige rounded-2xl p-8 h-72 overflow-hidden">
+                <h3 class="font-bold text-2xl">Как сделать омлет</h3>
+                <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
             </div>
         </div>
 
-        <div class="flex items-center">
-            <div>
-                <p class="text-right font-semibold mr-4 mb-1">Вчера</p>
-                <div class="bg-violet rounded-2xl p-8 min-h-60">
-                    <h3 class="font-bold text-2xl">Моё путешествие в глубины космоса и пыли</h3>
-                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
-                </div>
+        <div>
+            <p class="text-right font-semibold mr-4 mb-1">Вчера</p>
+            <div class="bg-violet rounded-2xl p-8 h-72 overflow-hidden">
+                <h3 class="font-bold text-2xl">Моё путешествие в глубины космоса и пыли</h3>
+                <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
             </div>
         </div>
 
-        <div class="flex items-center">
-            <div>
-                <p class="text-right font-semibold mr-4 mb-1">19 Янв.</p>
-                <div class="bg-blue rounded-2xl p-8 min-h-60">
-                    <h3 class="font-bold text-2xl">About Me</h3>
-                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
-                </div>
+        <div>
+            <p class="text-right font-semibold mr-4 mb-1">19 Янв.</p>
+            <div class="bg-blue rounded-2xl p-8 h-72 overflow-hidden">
+                <h3 class="font-bold text-2xl">About Me</h3>
+                <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
             </div>
         </div>
 
-        <div class="flex items-center">
-            <div>
-                <p class="text-right font-semibold mr-4 mb-1">04 Мар.</p>
-                <div class="bg-red rounded-2xl p-8">
-                    <h3 class="font-bold text-2xl">Как сделать омлет</h3>
-                    <p class="text-xl font-medium mt-4">берём 2-4 яйца, затем взбиваем их и кладём на сковородку, перед прожаркой не забудьте добавить своё унылое лицо. Потому что унылый омлет всегда готовится с унылым лицом, стыдно этого не знать.</p>
-                </div>
+        <div>
+            <p class="text-right font-semibold mr-4 mb-1">04 Мар.</p>
+            <div class="bg-red rounded-2xl p-8 h-72 overflow-hidden">
+                <h3 class="font-bold text-2xl">Как сделать омлет</h3>
+                <p class="text-xl font-medium mt-4">берём 2-4 яйца, затем взбиваем их и кладём на сковородку, перед прожаркой не забудьте добавить своё унылое лицо. Потому что унылый омлет всегда готовится с унылым лицом, стыдно этого не...
+                </p>
             </div>
         </div>
 
-        <div class="flex items-center">
-            <div>
-                <p class="text-right font-semibold mr-4 mb-1">21 Окт. 2024</p>
-                <div class="bg-green rounded-2xl p-8">
-                    <h3 class="font-bold text-2xl">About Me</h3>
-                    <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
-                </div>
+        <div>
+            <p class="text-right font-semibold mr-4 mb-1">21 Окт. 2024</p>
+            <div class="bg-green rounded-2xl p-8 h-72 overflow-hidden">
+                <h3 class="font-bold text-2xl">About Me</h3>
+                <p class="text-xl font-medium mt-4">Lorem ipsum abrakadabra laboka delakoka the parriot merai delakoka the parriot merai...</p>
             </div>
         </div>
 
-        <div class="flex items-center">
+        <div>
             <div>
                 <p class="text-right font-semibold mr-4 mb-1">01 Апр. 2008</p>
-                <div class="bg-black text-white rounded-2xl p-8">
+                <div class="bg-gray-700 text-white rounded-2xl p-8 h-72 overflow-hidden">
                     <h3 class="font-bold text-2xl">Моё путешествие в глубины космоса и пыли</h3>
                     <p class="text-xl font-medium mt-4">Вчера я решил попробовать
-                        некое вещество, которое дал мне алхимик. Боже, это было невероятно. Таких сильных глюков я ещё никогда в жизни не видел! Рекомендую!</p>
+                        некое вещество, которое дал мне алхимик. Боже, это было невероятно. Таких сильных глюков я ещё никогда в жизни не видел!</p>
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="bg-gray-800 mt-16 py-4">
-        Тестовая работа по React
+        <p class="text-center text-white font-medium text-xl">Тестовая работа по React</p>
     </footer>
 
     <script>
@@ -107,7 +116,9 @@
                 blue: '#ACDFF9',
                 red: '#F3ABAB',
                 green: '#C6FFAB',
-                black: '#585858'
+
+                /* Цвета для других элементов */
+                softBlack: '#222222'
               },
               fontFamily: {
                 // roboto: ["roboto", "sans-serif"]
