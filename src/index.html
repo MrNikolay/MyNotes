@@ -8,9 +8,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-50">
-    <header>
+    <header class="relative">
         <!-- Полноценный хэдер (если страница на самом верху) -->
         <div class="bg-gray-100 h-72">
+            <div class="btn not-active">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            
             <!-- Когда настройки закрыты -->
              <!-- <div class="text-center py-10">
                 <h1 class="text-gray-950 text-5xl font-bold">My Notes</h1>
@@ -28,7 +34,7 @@
              <!-- Когда настройки открыты -->
              <div class="py-10 bg-softBlack text-white h-full">
                 <h1 class="text-center text-5xl font-bold">Settings</h1>
-                <div class="toggle-switch">
+                <div class="toggle-switch mt-12">
                     <label>
                         <input type="checkbox">
                         <span class="slider"></span>
@@ -122,5 +128,7 @@
           }
         }
       </script>
+      
+      <script src="js/main.js"></script>
 </body>
 </html>
