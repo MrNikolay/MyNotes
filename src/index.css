@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Анимация перемены хэдера */
+.little-header {
+    overflow: hidden;
+}
+
+.little-header.open {
+    animation: openLittleHeader 0.8s ease forwards;
+}
+
+.little-header.close {
+    animation: closeLittleHeader 1s ease forwards;
+}
+
+@keyframes openLittleHeader {
+    from {
+        top: -100px;
+    }
+}
+
+@keyframes closeLittleHeader {
+    to {
+        top: -100px;
+    }
+}
