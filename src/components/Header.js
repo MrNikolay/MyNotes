@@ -44,15 +44,13 @@ function Header(props) {
     console.log(simpleHeaderAnimation);
     if (location.pathname == '/')
         return (
-            <Fragment>
+            <>
                 <ExtendedHeader isHidden={simpleHeaderAnimation == 'open'} />
                 {isSimpleHeaderExists && <SimpleHeader animation={simpleHeaderAnimation} />}
-            </Fragment>
+            </>
         )
     else
         return <SimpleHeader />
-        
-        // location.pathname == '/' ? <ExtendedHeader /> : <SimpleHeader
 }
 
 export default Header;
