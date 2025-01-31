@@ -1,12 +1,16 @@
+// tools
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
+// components
 import MainHeader from "./components/MainHeader";
 import Home from "./components/Home";
 import NoteRedactor from "./components/NoteRedactor";
-import NotesProvider from './context/NotesProvider';
-
 import SettingsWindow from "./components/UI/SettingsWindow";
+
+// context
+import MainProvider from "./context/MainProvider"
+
 
 function App() {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
@@ -15,18 +19,26 @@ function App() {
     setIsSettingsOpen(true);
   }
 
+  const closeSettings = () => {
+    setIsSettingsOpen(false);
+  }
+
   return (
     <BrowserRouter>
-      <MainHeader openSettingsHandler={openSettings} />
+      <MainProvider value={{openSettings, closeSettings}}>
+        
+        {isSettingsOpen && <SettingsWindow/>}
+        <MainHeader />
 
-      <NotesProvider>
         <Routes>
-          <Route path="/" element={<Home openSettingsHandler={openSettings} />} />
+          <Route path="/" element={<Home />} />
           <Route path="/edit-note" element={<NoteRedactor />} />
         </Routes>
-      </NotesProvider>
+        
+      </MainProvider>
     </BrowserRouter>
   );
 }
+
 
 export default App;

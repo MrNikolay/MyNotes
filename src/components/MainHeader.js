@@ -27,7 +27,7 @@ function MainHeader(props) {
                     </div>
                 </div>
 
-                <SettingsGear color='white' className='w-10'/>
+                <SettingsGear color='white' className='w-10' openSettingsHandler={props.openSettingsHandler}/>
             </div>
             </header>
         );

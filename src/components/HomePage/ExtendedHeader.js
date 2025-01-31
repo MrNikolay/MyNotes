@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 import SimpleHeader from '../MainHeader';  // свёрнутый хэдер
 import SettingsGear from "../UI/SettingsGear";
 
+
 const Header = (props) => (
     <header className={`bg-gray-100 h-72 text-center py-10 ${props.isHidden && 'opacity-0'}`}>
-        <SettingsGear color='black' className='absolute top-12 right-24 w-14'/>
+        <SettingsGear color='black' className='absolute top-12 right-24 w-14' openSettingsHandler={props.openSettingsHandler} />
 
         {/* Основной текст */}
         <h1 className="text-gray-950 text-5xl font-bold">My Notes</h1>
@@ -48,10 +49,15 @@ function ExtendedHeader(props) {
         };
     }, [isSimpleHeaderExists, simpleHeaderAnimation]);
 
+    const isHidden = simpleHeaderAnimation == 'open';
+
     return (
         <>
-            <Header isHidden={simpleHeaderAnimation == 'open'} />
-            {isSimpleHeaderExists && <SimpleHeader animation={simpleHeaderAnimation} forced={true} />}
+            <Header isHidden={isHidden} />
+            
+            {isSimpleHeaderExists && 
+                <SimpleHeader animation={simpleHeaderAnimation} forced={true} />
+            }
         </>
     );
 }

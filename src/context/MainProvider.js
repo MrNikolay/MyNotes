@@ -1,22 +1,21 @@
 /* Компонент-обёртка над NotesContext для управления состоянием заметок и передачи этих данных в другие компоненты */
 
-import { use, useState } from "react";
-import NotesContext from "./NotesContext";
+import { useState } from "react";
+import MainContext from "./MainContext";
 
 import notes from "../other/dummy-notes";
 
 
 const dummyNotes = notes;
 
-function NotesProvider(props) {
-    // Управление состоянием контекста
+function MainProvider(props) {
     const [ notes, setNotes ] = useState(dummyNotes);
 
     return (
-        <NotesContext.Provider value={{notes}}>
+        <MainContext.Provider value={{notes, ...props.value}}>
             {props.children}
-        </NotesContext.Provider>  
+        </MainContext.Provider>  
     );
 }
 
-export default NotesProvider;
+export default MainProvider;

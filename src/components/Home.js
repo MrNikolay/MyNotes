@@ -1,13 +1,13 @@
 import { useContext } from "react";
 
-import NotesContext from "../context/NotesContext";
+import MainContext from "../context/MainContext";
 
 import ExtendedHeader from './HomePage/ExtendedHeader';
 import NoteCard from "./HomePage/NoteCard";
 import Footer from "./HomePage/Footer";
 
 function Home(props) {
-    const { notes } = useContext(NotesContext);
+    const { notes } = useContext(MainContext);
 
     return (
         <>
