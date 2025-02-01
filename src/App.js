@@ -3,9 +3,9 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
 
 // components
-import MainHeader from "./components/MainHeader";
-import Home from "./components/Home";
-import NoteRedactor from "./components/NoteRedactor";
+import MainHeader from "./components/UI/MainHeader";
+import Home from "./components/HomePage/Home";
+import NoteRedactor from "./components/NoteRedactor/NoteRedactor";
 import SettingsWindow from "./components/UI/SettingsWindow";
 
 // context

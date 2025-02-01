@@ -2,9 +2,9 @@
     * Можно воспроизвести появление с open/close анимацией, передав их название через props.animation
 */
 
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
-import SettingsGear from "./UI/SettingsGear";
+import SettingsGear from "./SettingsGear";
 
 function MainHeader(props) {
     const animation = props.animation || "";
@@ -18,13 +18,17 @@ function MainHeader(props) {
                 <div className="w-11/12 max-w-[950px] mx-auto flex justify-between items-center">
                 <div className="flex gap-7 sm:gap-14">
                     {/* Логотип */}
-                    <h2 className="text-4xl font-bold">My Notes</h2>
+                    <Link to="/">
+                        <h2 className="text-4xl font-bold">My Notes</h2>
+                    </Link>
 
                     {/* Кнопка Create Note */}
-                    <div className="flex gap-2 hover:cursor-pointer items-center mt-1">
-                    <img src="/images/add-note-white.svg" className="w-6"/>
-                    <span className="font-medium text-xl">Create Note</span>
-                    </div>
+                    <Link to="/edit-note">
+                        <div className="flex gap-2 hover:cursor-pointer items-center mt-2">
+                        <img src="/images/add-note-white.svg" className="w-6"/>
+                        <span className="font-medium text-xl">Create Note</span>
+                        </div>
+                    </Link>
                 </div>
 
                 <SettingsGear color='white' className='w-10' openSettingsHandler={props.openSettingsHandler}/>

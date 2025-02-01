@@ -1,10 +1,10 @@
 import { useContext } from "react";
 
-import MainContext from "../context/MainContext";
+import MainContext from "../../context/MainContext";
 
-import ExtendedHeader from './HomePage/ExtendedHeader';
-import NoteCard from "./HomePage/NoteCard";
-import Footer from "./HomePage/Footer";
+import ExtendedHeader from './ExtendedHeader';
+import NoteCard from "./NoteCard";
+import Footer from "./Footer";
 
 function Home(props) {
     const { notes } = useContext(MainContext);

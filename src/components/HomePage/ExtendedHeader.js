@@ -1,8 +1,9 @@
 /* Расширенный ExtendedHeader для главной страницы, представляющий два разных хэдера, которые отображаются в зависимости от того, прокручена ли она вверх или нет */
 
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import SimpleHeader from '../MainHeader';  // свёрнутый хэдер
+import SimpleHeader from '../UI/MainHeader';  // свёрнутый хэдер
 import SettingsGear from "../UI/SettingsGear";
 
 
@@ -15,10 +16,12 @@ const Header = (props) => (
         <h2 className="text-gray-600 text-2xl font-medium my-5">A simple and user-friendly<br/>application for your notes</h2>
 
         {/* Кнопка Create Note */}
-        <div className="flex gap-3 justify-center items-center mt-8 hover:cursor-pointer">
-            <img src="/images/add-note-black.svg" />
-            <span className="font-bold text-2xl text-gray-900">Create Note</span>
-        </div>
+        <Link to="/edit-note">
+            <div className="flex gap-3 justify-center items-center mt-8 hover:cursor-pointer">
+                <img src="/images/add-note-black.svg" />
+                <span className="font-bold text-2xl text-gray-900">Create Note</span>
+            </div>
+        </Link>
     </header>
 );
 
