@@ -1,28 +1,46 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 function TextArea(props) {
-    const [ height, setHeight ] = useState()
-    console.log('изменяем высоту')
+    const textareaRef = useRef(null);
+    const [height, setHeight] = useState('auto');
 
-    const inputListener = (event) => {
-        const scrollHeight = event.target.scrollHeight;
-        
-        if (scrollHeight != height)
-            setHeight(event.target.scrollHeight);
+    const handleInput = () => {
+        const textarea = textareaRef.current;
+        if (textarea) {
+            textarea.style.height = 'auto';               // Сброс высоты
+            textarea.style.height = `${textarea.scrollHeight}px`; // Установка новой высоты
+            setHeight(textarea.scrollHeight + 'px');      // Сохранение высоты в состоянии
+        }
+    };
+
+    /* Здесь находятся триггеры на ключевые клавиши (Enter, Backspace и другие) */
+    const handleKeyDown = (event) => {
+        if (event.key == 'Backspace' && textareaRef.current.value == "")
+            props.deleteBlock(props.id);
+
+        if (event.key == "Enter" && !event.shiftKey)
+            props.addNewBlock(props.id);
     }
 
-    const className = `bg-gray-100 overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
-    const style = {
-        height: height ? `${height}px` : 'auto'
-    }
+    useEffect(() => {
+        handleInput(); // Инициализация высоты при монтировании
+    }, []);
 
-    return <textarea 
-        onInput={inputListener} 
-        placeholder={props.placeholder} 
-        className={className}
-        style={style} 
-    />
-};
+    const className = `bg-gray-50 overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
+
+    return (
+        <textarea
+            id={props.id}
+            ref={textareaRef}
+            onInput={handleInput}
+            onKeyDown={handleKeyDown}
+            placeholder={props.placeholder}
+            className={className}
+            style={{ height }}
+        />
+    );
+}
+
 
 
 export default TextArea;
