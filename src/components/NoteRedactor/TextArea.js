@@ -52,7 +52,7 @@ function TextArea(props) {
         handleInput(); // Инициализация высоты при монтировании
     }, []);
 
-    const className = `bg-gray-50 overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
+    const className = `w-[95%] mx-auto bg-gray-50 overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
 
     return (
         <textarea

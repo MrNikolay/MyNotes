@@ -10,14 +10,28 @@ function Block(props) {
         moveDown: () => props.moveDown(props.id)
     }
 
-    const restProps = {...props, ...handlers}
+    const isFocus = props.id === props.focusId;
+    const restProps = {...props, ...handlers};
+    
+    const blockElement = {
+        'paragraph': <Paragraph {...restProps} placeholder={isFocus ? 'Введите текст здесь...' : ''} />,
+        'title': <Title {...restProps} placeholder={"Заголовок"} />
+    }[props.type]
 
-    return (
-        <>
-            {props.type == 'paragraph' && <Paragraph {...restProps} />}
-            {props.type == 'title' && <Title {...restProps} />}
-        </>
-    )
+    if (false)
+        return (
+            <div className="flex relative">
+                <span className="absolute text-4xl cursor-pointer top-[50%] -translate-y-5 left-2">+</span>
+                {blockElement}
+            </div>
+        )
+    else
+        return (
+            <div className="flex relative">
+                {isFocus && <span className="absolute text-4xl cursor-pointer top-[50%] -translate-y-5 left-2">+</span>}
+                {blockElement}
+            </div>
+    );
 }
 
 
