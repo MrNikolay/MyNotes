@@ -3,14 +3,14 @@ import Paragraph from "./Types/Paragraph";
 
 
 function Block(props) {
-    const addNewBlock = () => props.addNewBlock(props.id);
-    const deleteBlock = () => props.deleteBlock(props.id);
+    const handlers = {
+        enterHandler: () => props.enterHandler(props.id),
+        deleteBlock: () => props.deleteBlock(props.id),
+        moveUp: () => props.moveUp(props.id),
+        moveDown: () => props.moveDown(props.id)
+    }
 
-    if (props.focus)
-        console.log(props.id)
-
-
-    const restProps = {addNewBlock, deleteBlock, ...props}
+    const restProps = {...props, ...handlers}
 
     return (
         <>
