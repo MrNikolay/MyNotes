@@ -2,14 +2,12 @@ import { useEffect, useRef, useState } from 'react';
 
 function TextArea(props) {
     const textareaRef = useRef(null);
-    const [height, setHeight] = useState('auto');
 
     const handleInput = () => {
         const textarea = textareaRef.current;
         if (textarea) {
             textarea.style.height = 'auto';               // Сброс высоты
             textarea.style.height = `${textarea.scrollHeight}px`; // Установка новой высоты
-            setHeight(textarea.scrollHeight + 'px');      // Сохранение высоты в состоянии
         }
     };
 
@@ -52,7 +50,7 @@ function TextArea(props) {
         handleInput(); // Инициализация высоты при монтировании
     }, []);
 
-    const className = `w-[95%] mx-auto overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
+    const className = ` w-[95%] mx-auto overflow-hidden resize-none focus:outline-none placeholder:text-grayText ${props.className}`;
 
     return (
         <textarea
@@ -62,7 +60,6 @@ function TextArea(props) {
             onKeyDown={handleKeyDown}
             placeholder={props.placeholder}
             className={className}
-            style={{ height }}
         />
     );
 }

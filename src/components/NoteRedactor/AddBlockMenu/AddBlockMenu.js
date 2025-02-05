@@ -29,8 +29,10 @@ function AddBlockMenu(props) {
 
     return (
         <div ref={myDiv}>
-            <button className="absolute text-4xl cursor-pointer top-[40%] -translate-y-5 left-2" onClick={toggleClickHandler}>+</button>
-            { isMenuShown && 'aboba' }
+            <button className="absolute h-full text-4xl cursor-pointer left-4" onClick={toggleClickHandler}>
+                <span className=''>+</span>
+            </button>
+            { isMenuShown && <TypesMenu /> }
         </div>
     )
 }

@@ -4,14 +4,20 @@
 import TypeSelector from "./TypeSelector";
 
 function TypesMenu(props) {
+    function createTitle() {
+        console.log('title')
+    }
+
+    function createParagraph() {
+        console.log('par')
+    }
+
+    const style = "absolute overflow-y-auto max-h-64 left-10 top-10 flex flex-col py-2 z-10 border-2 bg-gray-50"
+
     return (
-        <div className="absolute flex flex-col bg-gray-100">
-            <TypeSelector>Пункт 1</TypeSelector>
-            <TypeSelector>Пункт 2</TypeSelector>
-            <TypeSelector>Пункт 3</TypeSelector>
-            <TypeSelector>Пункт 4</TypeSelector>
-            <TypeSelector>Пункт 5</TypeSelector>
-            <TypeSelector>Пункт 6</TypeSelector>
+        <div className={style}>
+            <TypeSelector onClick={createTitle}>H Заголовок</TypeSelector>
+            <TypeSelector onClick={createParagraph}>¶ Параграф</TypeSelector>
         </div>
     );
 }
