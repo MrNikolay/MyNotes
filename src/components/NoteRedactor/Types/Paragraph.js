@@ -1,7 +1,7 @@
-import TextArea from "../TextArea";
+import TextArea from "../General/TextArea";
 
 function Paragraph(props) {
-    const className = "text-2xl min-h-full mt-4 font-semibold"
+    const className = "text-2xl min-h-full font-semibold"
 
     return <TextArea className={className} {...props} />
 }

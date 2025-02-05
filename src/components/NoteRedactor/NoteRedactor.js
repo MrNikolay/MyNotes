@@ -3,18 +3,39 @@ import { useEffect, useRef, useState } from "react";
 import Block from "./Block";
 
 
+/* ЗАМЕТКИ НА БУДУЩЕЕ
+    - Убрать автозаполнение браузером (он думает что нужно вводить электронную почту)
+    - Сделать текст в placeholder поменьше, да и вообще весь текст поменьше
+
+    # Слайс для вставки в середину
+    const updatedBlocks = [
+        ...blocks.slice(0, index + 1),
+        newBlock,
+        ...blocks.slice(index + 1)
+    ]
+*/
+
 function NoteRedactor(props) {
     const [ marginTop, setMarginTop ] = useState('72');
     const [ blocks, setBlocks ] = useState([
-        {id: crypto.randomUUID(), type: 'title', primary: true},
+        {id: crypto.randomUUID(), type: 'title'},
+        {id: crypto.randomUUID(), type: 'paragraph'},
+        {id: crypto.randomUUID(), type: 'paragraph'},
+        {id: crypto.randomUUID(), type: 'title'},
+        {id: crypto.randomUUID(), type: 'paragraph'},
+        {id: crypto.randomUUID(), type: 'paragraph'},
+        {id: crypto.randomUUID(), type: 'paragraph'},
         {id: crypto.randomUUID(), type: 'paragraph'},
     ]);
     const [ focusId, setFocusId ] = useState()
+    const mainContainer = useRef();
     
     const findIndex = id => blocks.findIndex(block => block.id === id);
+    const findLastBlockId = () => (blocks[blocks.length - 1].id)
 
     // Функция-обработчик клавиши Enter (добавление нового блока ИЛИ переход на следующий блок)
     function enterHandler(id) {
+        console.log('ENTER_HANDLER()')
         const index = findIndex(id);
 
         // Если это последний блок, то добавляем новый ниже
@@ -23,9 +44,8 @@ function NoteRedactor(props) {
             const newBlock = { id: newId, type: 'paragraph' };
 
             const updatedBlocks = [
-                ...blocks.slice(0, index + 1),
-                newBlock,
-                ...blocks.slice(index + 1)
+                ...blocks,
+                newBlock
             ]
 
             setBlocks(updatedBlocks);
@@ -40,7 +60,6 @@ function NoteRedactor(props) {
     // Функция для удаления блока
     function deleteBlock(id) {
         const index = findIndex(id)
-        console.log(index);
 
         if (index > 0 && blocks.length > 2) {
             const updatedBlocks = blocks.filter(block => block.id !== id);
@@ -90,10 +109,16 @@ function NoteRedactor(props) {
             setMarginTop(header.offsetHeight);
 
         window.addEventListener('focusin', (event) => {
-            setFocusId(event.target.id)
+            const clickElementId = event.target.id
+            if (clickElementId) {
+                if (findIndex(clickElementId) != -1) {
+                    // Если мы кликнули на существующий блок, то переносим фокус
+                    setFocusId(clickElementId);
+                }
+            }
         })
 
-        const targetFocusId = blocks[blocks.length - 1].id;
+        const targetFocusId = findLastBlockId();
         setFocusId(targetFocusId);
         stealFocus(targetFocusId);
     }, [])
@@ -103,11 +128,18 @@ function NoteRedactor(props) {
     }, [focusId])
 
     const restProps = {
-        enterHandler, deleteBlock, moveUp, moveDown, focusId
+        enterHandler, deleteBlock, moveUp, moveDown, focusId,
+        lastBlockId: findLastBlockId()
     }
 
     return (
-        <div id="editor" className="flex flex-col min-h-screen pt-8" style={{marginTop: marginTop + 'px'}}>
+        <div 
+            ref={mainContainer} 
+            id="editor" 
+            className="flex flex-col min-h-screen pt-8" 
+            style={{marginTop: marginTop + 'px'}}
+        >
+
             {blocks.map((block, index) => ( 
                 <Block 
                     key={block.id}
@@ -115,6 +147,7 @@ function NoteRedactor(props) {
                     {...restProps}
                 />
             ))}
+
         </div>
     );
 }

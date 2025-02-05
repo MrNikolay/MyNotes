@@ -1,4 +1,4 @@
-import TextArea from "../TextArea";
+import TextArea from "../General/TextArea";
 
 function Title(props) {
     const className = "text-4xl font-bold";
