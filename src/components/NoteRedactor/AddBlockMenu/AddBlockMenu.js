@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 import TypesMenu from './TypesMenu';
 
-function AddBlockMenu(props) {
+function AddBlockMenu() {
     const myDiv = useRef();
     const [ isMenuShown, setIsMenuShown ] = useState();
 
@@ -26,6 +26,7 @@ function AddBlockMenu(props) {
             document.removeEventListener('click', handleMouseClick)
         }
     }, [isMenuShown])
+
 
     return (
         <div ref={myDiv}>

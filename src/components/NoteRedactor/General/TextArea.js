@@ -1,7 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useContext } from 'react';
+
+import BlockContext from '../../../context/BlockContext';
+import NoteContext from '../../../context/NoteContext';
+
 
 function TextArea(props) {
     const textareaRef = useRef(null);
+
+    const blockContext = useContext(BlockContext);
+    const noteContext = useContext(NoteContext);
+
 
     const handleInput = () => {
         const textarea = textareaRef.current;
@@ -22,26 +30,27 @@ function TextArea(props) {
         // Перемещение ВВЕРХ, если курсор на первой строке
         if (event.key === 'ArrowUp' && currentLine === 1) {
             event.preventDefault();
-            props.moveUp();
+            noteContext.moveUp(blockContext.id);
         }
         
         // Перемещение ВНИЗ, если курсор на последней строке
         if (event.key === 'ArrowDown' && currentLine === totalLines) {
             event.preventDefault();
-            props.moveDown();
+            noteContext.moveDown(blockContext.id);
         }
     }
 
     /* Здесь находятся триггеры на ключевые клавиши (Enter, Backspace и другие) */
     const handleKeyDown = (event) => {
-        if (event.key == 'Backspace' && textareaRef.current.value == "")
-            props.deleteBlock(props.id);
+        if (event.key == 'Backspace' && textareaRef.current.value == "") {
+            noteContext.deleteBlock(blockContext.id);
+        }
 
-        if (event.key == "Enter" && !event.shiftKey)
-            props.enterHandler(props.id);
+        if (event.key == "Enter" && !event.shiftKey) {
+            noteContext.enterHandler(blockContext.id);
+        }
 
         if (event.key === 'ArrowUp' || event.key === "ArrowDown") {
-            // event.preventDefault();
             arrowKeyHandler(event);
         }
     }
@@ -54,7 +63,7 @@ function TextArea(props) {
 
     return (
         <textarea
-            id={props.id}
+            id={blockContext.id}
             ref={textareaRef}
             onInput={handleInput}
             onKeyDown={handleKeyDown}
