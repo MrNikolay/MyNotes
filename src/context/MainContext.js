@@ -1,3 +1,5 @@
+/* Основной контекст: список заметок, тема, служебные хэндлеры открытия настроек... */
+
 import { createContext } from "react";
 
 const MainContext = createContext({

@@ -1,26 +1,33 @@
+/* Главная страница
+    * получает список заметок из MainContext и отображает главную страницу с карточками заметок
+*/
+
 import { useContext } from "react";
 
 import MainContext from "../../context/MainContext";
 
 import ExtendedHeader from './ExtendedHeader';
-import NoteCard from "./NoteCard";
+import NotesList from "./NotesList";
 import Footer from "./Footer";
+
 
 function Home() {
     const { notes } = useContext(MainContext);
+
+    const messageIfNoNotes = (
+            <h1 className="mt-36 font-bold text-4xl text-softBlack text-center leading-relaxed">
+                You don't have any notes yet <br />Write your first one!
+            </h1>
+    )
 
     return (
         <>
             <ExtendedHeader />
 
-            <div className="relative">
-                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 3xl:grid-cols-4 gap-x-8 gap-y-14 mt-12 w-11/12 mx-auto text-gray-950">
-                    {notes.map((note, index) => (
-                        <NoteCard key={index} note={note} />
-                    ))}
-                </div>
-                <Footer/>
+            <div className="relative min-h-svh pb-48">
+                {notes.length ? <NotesList notes={notes} /> : messageIfNoNotes}
             </div>
+            <Footer/>
         </>
     );
 }
