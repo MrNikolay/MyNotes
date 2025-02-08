@@ -43,7 +43,6 @@ function TextArea(props) {
 
     /* Здесь находятся триггеры на ключевые клавиши (Enter, Backspace и другие) */
     const handleKeyDown = (event) => {
-        console.log('key_down()')
         if (event.key == 'Backspace' && textareaRef.current.value == "") {
             noteContext.deleteBlock(blockContext.id);
         }

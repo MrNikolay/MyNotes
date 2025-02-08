@@ -1,3 +1,7 @@
+/* Этот компонент управляет состоянием фокуса и реализует функции для контроля этого состояния 
+    Внимание: Логика блоков перенесена в BlockList.js
+*/
+
 import { useEffect, useState } from "react";
 
 import BlockList from "./BlockList";

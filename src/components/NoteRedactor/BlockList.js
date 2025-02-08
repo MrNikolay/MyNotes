@@ -1,4 +1,11 @@
-import { useEffect, useState } from 'react';
+/* BlockList.js управляет блоками заметки. 
+Он содержит методы по добавлению, удалению, вставки и другие методы для блоков, многие
+из которых используют функции управления фокусом из NoteRedactor.js 
+
+Также он управляет NoteContext.js  (там где хранится информация о блоках)
+*/
+
+import { use, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import NoteContext from '../../context/NoteContext';
@@ -7,18 +14,29 @@ import Block from "./Block";
 import SaveNoteButton from './General/SaveNoteButton';
 
 
-const defaultBlocks = [
-    {id: crypto.randomUUID(), type: 'title', value: ''},
-    {id: crypto.randomUUID(), type: 'paragraph', value: ''},
-]
+// const defaultBlocks = [
+//     {id: crypto.randomUUID(), type: 'title', value: ''},
+//     {id: crypto.randomUUID(), type: 'paragraph', value: ''},
+// ]
 
 
-function NoteProvider(props) {
+function BlockList(props) {
     const location = useLocation();
-
     const id = location.state ? location.state.id : crypto.randomUUID();
+    
+    /* Перенеси этот defaultBlocks за пределы функции и получишь любопытный баг (скрины бага есть в файлах проекта /tmp/...) 
+        Вопрос: Как это работает?!
+    */
+    const defaultBlocks = [
+        {id: crypto.randomUUID(), type: 'title', value: ''},
+        {id: crypto.randomUUID(), type: 'paragraph', value: ''},
+    ]
+
     const [ blocks, setBlocks ] = useState(location.state ? location.state.blocks : defaultBlocks);
 
+    useEffect(() => {
+        setBlocks(location.state ? [...location.state.blocks] : [...defaultBlocks]);
+    }, [location.state])
 
     // ссылки на методы родителя (NoteRedactor)
     const setFocusId = props.setFocusId;
@@ -132,14 +150,15 @@ function NoteProvider(props) {
         moveDown,
         insertNewBlock,
         blocks,
-        setBlocks,
+        // setBlocks,
         id
     }
 
     // пропсы для blocks
     const restProps = {
         focusId: props.focusId,
-        lastBlockId: findLastBlockId()
+        lastBlockId: findLastBlockId(),
+        setBlocks
     }
 
     return (
@@ -156,16 +175,4 @@ function NoteProvider(props) {
 }
 
 
-export default NoteProvider;
-
-/*
-
-{blocks.map((block, index) => ( 
-                <Block 
-                    key={block.id}
-                    {...block} 
-                    {...restProps}
-                />
-            ))}
-
-*/
+export default BlockList;

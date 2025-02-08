@@ -1,3 +1,5 @@
+/* Кнопка создания/сохранения заметки в BlockList.js */
+
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -28,7 +30,7 @@ function SaveNoteButton(props) {
 
     return (
         <button className="fixed bottom-8 right-8 bg-blue rounded py-3 px-4 text-xl font-semibold hover:bg-red transition" onClick={saveNoteHandler}>
-            { props.isNotNew ? 'Сохранить изменения' : 'Создать заметку' }
+            { props.isNotNew ? 'Save changes' : 'Create note' }
         </button>
     );
 }
