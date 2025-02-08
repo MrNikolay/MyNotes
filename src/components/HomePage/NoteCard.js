@@ -63,17 +63,18 @@ function NoteCard(props) {
     const color = colors[note.color] || "";
     
     /* получение и обработка даты */
-    const day = note.date.getDate();
-    const month = note.date.toLocaleString('en-US', { month: 'short' });
-    const year = note.date.getFullYear();
+    const date = new Date(note.date)
+
+    const day = date.getDate();
+    const month = date.toLocaleString('en-US', { month: 'short' });
+    const year = date.getFullYear();
     const currentYear = new Date().getFullYear();
 
-    const date = `${day} ${month} ${year != currentYear && year || ""}`
-
+    const dateInfo = `${day} ${month} ${year != currentYear && year || ""}`
 
     return (
         <div className="transition-transform transform hover:scale-105 hover:cursor-pointer" onClick={handleNavigate}>
-            <p className="text-right font-semibold mr-4 mb-1">{date}</p>
+            <p className="text-right font-semibold mr-4 mb-1">{dateInfo}</p>
             <div class={`${color} rounded-2xl p-8 h-72 overflow-hidden ${note.color == 'dark-blue' && 'text-white'}`}>
                 <h3 class="font-bold text-2xl">{title}</h3>
                 <p class="text-lg font-medium mt-4 break-words">{description}</p>

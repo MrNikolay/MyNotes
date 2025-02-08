@@ -26,7 +26,7 @@ function BlockList(props) {
     
     /* Перенеси этот defaultBlocks за пределы функции и получишь любопытный баг (скрины бага есть в файлах проекта /tmp/...) 
         Вопрос: Как это работает?!
-    */
+    */ 
     const defaultBlocks = [
         {id: crypto.randomUUID(), type: 'title', value: ''},
         {id: crypto.randomUUID(), type: 'paragraph', value: ''},
@@ -161,6 +161,8 @@ function BlockList(props) {
         setBlocks
     }
 
+    const isValid = blocks[0].value.length > 0 && blocks[1].value.length > 0;
+
     return (
         <NoteContext.Provider value={provideData}>
 
@@ -168,7 +170,7 @@ function BlockList(props) {
                 <Block key={block.id} {...block} {...restProps} index={index} />
             ))}
 
-            <SaveNoteButton isNotNew={location.state != undefined} />
+            {isValid && <SaveNoteButton isNotNew={location.state != undefined} /> }
 
         </NoteContext.Provider>
     );

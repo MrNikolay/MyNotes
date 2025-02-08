@@ -18,7 +18,7 @@ function SaveNoteButton(props) {
 
         mainContext.saveNote({
             id: noteContext.id,
-            date: new Date(),
+            date: new Date().toISOString(),
             color: colors[Math.floor(Math.random() * colors.length)],
             blocks: noteContext.blocks
         })
