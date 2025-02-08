@@ -11,12 +11,13 @@ function TextArea(props) {
     const noteContext = useContext(NoteContext);
 
 
-    const handleInput = () => {
+    const handleInput = (event) => {
         const textarea = textareaRef.current;
         if (textarea) {
             textarea.style.height = 'auto';               // Сброс высоты
             textarea.style.height = `${textarea.scrollHeight}px`; // Установка новой высоты
         }
+        props.changeValue(textarea.value);
     };
 
     // Обработчик нажатия стрелочек вверх/вниз
@@ -42,6 +43,7 @@ function TextArea(props) {
 
     /* Здесь находятся триггеры на ключевые клавиши (Enter, Backspace и другие) */
     const handleKeyDown = (event) => {
+        console.log('key_down()')
         if (event.key == 'Backspace' && textareaRef.current.value == "") {
             noteContext.deleteBlock(blockContext.id);
         }
@@ -68,8 +70,11 @@ function TextArea(props) {
             onInput={handleInput}
             onKeyDown={handleKeyDown}
             placeholder={props.placeholder}
+            value={props.value}
             className={className}
-        />
+        >
+            {props.value}
+        </textarea>
     );
 }
 

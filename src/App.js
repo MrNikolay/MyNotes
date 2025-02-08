@@ -1,3 +1,14 @@
+/* В главном компоненте App.js реализуется след. логика:
+  - перехода по страницам
+  - открытия окна с настройками
+  - изменение состояния темы
+  - отображение шапки
+  и другие...
+
+  Внимание: Логика управления контекстом заметок (в том числе работа с localStorage) реализована в MainProvider!
+*/
+
+
 // tools
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useState } from "react";
@@ -13,19 +24,17 @@ import MainProvider from "./context/MainProvider"
 
 
 function App() {
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const [ isSettingsOpen, setIsSettingsOpen ] = useState(false);
+  const [ isDarkThemeEnabled, setIsDarkThemeEnabled ] = useState(false);
 
-  const openSettings = () => {
-    setIsSettingsOpen(true);
-  }
+  const openSettings = () => setIsSettingsOpen(true);
+  const closeSettings = () => setIsSettingsOpen(false);
 
-  const closeSettings = () => {
-    setIsSettingsOpen(false);
-  }
 
+  const contextValue = {openSettings, closeSettings, isDarkThemeEnabled}
   return (
     <BrowserRouter>
-      <MainProvider value={{openSettings, closeSettings}}>
+      <MainProvider value={contextValue}>
         
         {isSettingsOpen && <SettingsWindow/>}
         <MainHeader />

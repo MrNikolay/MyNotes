@@ -1,18 +1,33 @@
-/* Компонент-обёртка над MainContext для управления состоянием списка существующих заметок и передачи этих данных в другие компоненты */
+/* Компонент-обёртка над MainContext для управления состоянием списка существующих заметок и передачи этих данных в другие компоненты
+    также он получает какие-то служебные фичи с App.js и передаёт их в дочерние компоненты
+*/
 
 import { useState } from "react";
 import MainContext from "./MainContext";
 
-import notes from "../other/dummy-notes";
-
-
-const dummyNotes = notes;
-
 function MainProvider(props) {
-    const [ notes, setNotes ] = useState(dummyNotes);
+    const [ notes, setNotes ] = useState([]);
+
+    // Обработчик сохранения заметки
+    function saveNote(note) {
+        const index = notes.findIndex(item => item.id == note.id);
+
+        // Если заметка уже существует
+        if (index != -1) {
+            const updatedNote = notes[index];
+            updatedNote.blocks = note.blocks;
+            setNotes([
+                ...notes.slice(0, index),
+                updatedNote,
+                ...notes.slice(index + 1)
+            ])
+        } else {
+            setNotes([...notes, note])
+        }
+    }
 
     return (
-        <MainContext.Provider value={{notes, ...props.value}}>
+        <MainContext.Provider value={{notes, saveNote, ...props.value}}>
             {props.children}
         </MainContext.Provider>  
     );

@@ -1,17 +1,24 @@
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import NoteContext from '../../context/NoteContext';
 
 import Block from "./Block";
+import SaveNoteButton from './General/SaveNoteButton';
 
 
-const dummyBlocks = [
-    {id: crypto.randomUUID(), type: 'title'},
-    {id: crypto.randomUUID(), type: 'paragraph'},
+const defaultBlocks = [
+    {id: crypto.randomUUID(), type: 'title', value: ''},
+    {id: crypto.randomUUID(), type: 'paragraph', value: ''},
 ]
 
+
 function NoteProvider(props) {
-    const [ blocks, setBlocks ] = useState(dummyBlocks);
+    const location = useLocation();
+
+    const id = location.state ? location.state.id : crypto.randomUUID();
+    const [ blocks, setBlocks ] = useState(location.state ? location.state.blocks : defaultBlocks);
+
 
     // ссылки на методы родителя (NoteRedactor)
     const setFocusId = props.setFocusId;
@@ -43,14 +50,6 @@ function NoteProvider(props) {
             setFocusId(blocks[index + 1].id);
         }
     }
-
-    /*
-    const updatedBlocks = [
-        ...blocks.slice(0, index + 1),
-        newBlock,
-        ...blocks.slice(index + 1)
-    ]
-    */
 
     // Добавление блока с определённым типом сразу после блока с данным id
     function insertNewBlock(id, type) {
@@ -131,7 +130,10 @@ function NoteProvider(props) {
         deleteBlock,
         moveUp,
         moveDown,
-        insertNewBlock
+        insertNewBlock,
+        blocks,
+        setBlocks,
+        id
     }
 
     // пропсы для blocks
@@ -143,9 +145,11 @@ function NoteProvider(props) {
     return (
         <NoteContext.Provider value={provideData}>
 
-            {blocks.map(block => (
-                <Block key={block.id} {...block} {...restProps} />
+            {blocks.map((block, index) => (
+                <Block key={block.id} {...block} {...restProps} index={index} />
             ))}
+
+            <SaveNoteButton isNotNew={location.state != undefined} />
 
         </NoteContext.Provider>
     );

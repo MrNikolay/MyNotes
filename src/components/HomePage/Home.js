@@ -6,7 +6,7 @@ import ExtendedHeader from './ExtendedHeader';
 import NoteCard from "./NoteCard";
 import Footer from "./Footer";
 
-function Home(props) {
+function Home() {
     const { notes } = useContext(MainContext);
 
     return (
