@@ -4,9 +4,6 @@ import { useContext } from "react";
 
 import MainContext from "../../context/MainContext";
 
-import TrashIcon from "./NoteIcons/TrashIcon";
-import PalleteIcon from "./NoteIcons/PalleteIcon";
-
 import ExtendedHeader from './ExtendedHeader';
 import NotesList from "./NotesList";
 import Footer from "./Footer/Footer";
@@ -28,9 +25,6 @@ function Home() {
             <div className="relative min-h-svh pb-48">
                 {notes.length ? <NotesList notes={notes} /> : messageIfNoNotes}
             </div>
-
-            <TrashIcon theme="light" />
-            <PalleteIcon theme="light" />
 
             <Footer/>
         </>

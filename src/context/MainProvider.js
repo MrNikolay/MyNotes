@@ -38,8 +38,18 @@ function MainProvider(props) {
         }
     }
 
+    // Обработчик удаления заметки
+    const deleteNote = (id) => { setNotes(notes.filter(note => note.id != id)) }
+
+    const provideValue = {
+        notes, 
+        saveNote,
+        deleteNote, 
+        ...props.value
+    }
+
     return (
-        <MainContext.Provider value={{notes, saveNote, ...props.value}}>
+        <MainContext.Provider value={provideValue}>
             {props.children}
         </MainContext.Provider>  
     );

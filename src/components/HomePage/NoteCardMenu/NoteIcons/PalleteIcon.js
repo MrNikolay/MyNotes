@@ -9,7 +9,8 @@ export default function(props) {
             xmlns="http://www.w3.org/2000/svg" 
             fill={color} 
             version="1.1" 
-            width="50px" 
+            width={props.iconSize}
+            className={props.className}
             viewBox="0 0 413.844 413.844"
         >
             <g>

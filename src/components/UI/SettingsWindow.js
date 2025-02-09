@@ -7,8 +7,6 @@ import MainContext from "../../context/MainContext";
 function SettingsWindow() {
     const closeSettingsHandler = useContext(MainContext).closeSettings;
 
-    console.log(closeSettingsHandler)
-
     return (
         <ModalWindow onClose={closeSettingsHandler}>
             <h1 class="text-4xl font-bold text-center">Settings</h1>

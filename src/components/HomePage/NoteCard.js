@@ -1,6 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import colors from '../UI/Colors';
+import NoteCardMenu from "./NoteCardMenu/NoteCardMenu";
 
 function textTrim(text, n) {
     /* Обрезает текст до n символов */
@@ -39,6 +41,7 @@ function getDescription(blocks) {
 
 function NoteCard(props) {
     const navigate = useNavigate();
+    const [ isFocused, setIsFocused ] = useState(false);
 
     const handleNavigate = () => {
         navigate('/edit-note', { state: { blocks: note.blocks, id: note.id } });
@@ -63,11 +66,18 @@ function NoteCard(props) {
     const dateInfo = `${day} ${month} ${year != currentYear && year || ""}`
 
     return (
-        <div className="transition-transform transform hover:scale-105 hover:cursor-pointer" onClick={handleNavigate}>
-            <p className="text-right font-semibold mr-4 mb-1">{dateInfo}</p>
-            <div class={`${color} rounded-2xl p-8 h-72 overflow-hidden ${note.color == 'dark-blue' && 'text-white'}`}>
-                <h3 class="font-bold text-2xl">{title}</h3>
-                <p class="text-lg font-medium mt-4 break-words">{description}</p>
+        <div
+            className="relative"
+            onMouseEnter={ () => setIsFocused(true) } 
+            onMouseLeave={ () => setIsFocused(false) }
+        >
+            <NoteCardMenu date={dateInfo} isFocused={isFocused} noteId={note.id} />
+            <div
+                className={`note-card ${color} hover:cursor-pointer rounded-2xl p-8 h-72 overflow-hidden ${note.color == 'dark-blue' && 'text-white'}` }
+                onClick={handleNavigate}
+            >
+                <h3 className="font-bold text-2xl">{title}</h3>
+                <p className="text-lg font-medium mt-4 break-words">{description}</p>
             </div>
         </div>
     );

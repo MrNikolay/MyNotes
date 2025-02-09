@@ -8,6 +8,13 @@
     --dark: #fff;
 }
 
+.note-card {
+    transition: transform 150ms;
+}
+
+.note-card:hover {
+    transform: scale(103%) translateY(10px);
+}
 
 /* Анимация перемены хэдера */
 .little-header {

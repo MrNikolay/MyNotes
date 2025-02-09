@@ -5,9 +5,9 @@ function Footer() {
     const telegramHref = "https://t.me/USERNAME"
 
     return (
-        <footer class="bg-gray-800 w-full py-4">
+        <footer className="bg-gray-800 w-full py-4">
             
-            <p class="text-center text-white font-medium text-xl">
+            <p className="text-center text-white font-medium text-xl">
                 Practical project, built with ❤️ using React !
             </p>
 
