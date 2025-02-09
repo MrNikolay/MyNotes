@@ -12,6 +12,7 @@ export default function(props) {
             width={props.iconSize}
             className={props.className}
             viewBox="0 0 413.844 413.844"
+            onClick={props.onClick}
         >
             <g>
                  <g>

@@ -71,7 +71,7 @@ function NoteCard(props) {
             onMouseEnter={ () => setIsFocused(true) } 
             onMouseLeave={ () => setIsFocused(false) }
         >
-            <NoteCardMenu date={dateInfo} isFocused={isFocused} noteId={note.id} />
+            <NoteCardMenu date={dateInfo} isFocused={isFocused} note={note} />
             <div
                 className={`note-card ${color} hover:cursor-pointer rounded-2xl p-8 h-72 overflow-hidden ${note.color == 'dark-blue' && 'text-white'}` }
                 onClick={handleNavigate}

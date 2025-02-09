@@ -6,7 +6,6 @@ import ModalWindow from '../../UI/ModalWindow';
 function ConfirmationWindowWrapper(props) {
     const window = (
         <ModalWindow onClose={props.onClose}>
-            <h1 className='text-2xl mt-6'>Вы действительно уверены, что хотите удалить эту заметку?</h1>
             <div className='flex justify-center gap-12 mt-6'>
                 <button 
                     className="bg-softBlack text-white font-semibold px-8 py-1 text-xl transition-all hover:bg-blue hover:text-black"

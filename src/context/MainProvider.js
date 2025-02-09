@@ -38,13 +38,22 @@ function MainProvider(props) {
         }
     }
 
+    // Функция для изменения существующей заметки (замены)
+    function changeNote(id, newNote) {
+        const index = notes.findIndex(note => note.id == id);
+        const updatedNotes = [...notes];
+        updatedNotes[index] = newNote;
+        setNotes(updatedNotes);
+    }
+
     // Обработчик удаления заметки
     const deleteNote = (id) => { setNotes(notes.filter(note => note.id != id)) }
 
     const provideValue = {
         notes, 
         saveNote,
-        deleteNote, 
+        deleteNote,
+        changeNote,
         ...props.value
     }
 
