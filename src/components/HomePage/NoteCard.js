@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
+import colors from '../UI/Colors';
 
 function textTrim(text, n) {
     /* Обрезает текст до n символов */
@@ -33,17 +34,6 @@ function getDescription(blocks) {
 
     // если случилось переполнение, то обрезаем, а иначе возвращаем без изменений
     return isBreak ? textTrim(description, maxLength) : description
-}
-
-
-
-const colors = {
-    'beige': 'bg-beige',
-    'blue': 'bg-blue',
-    'green': 'bg-green',
-    'red': 'bg-red',
-    'violet': 'bg-violet',
-    'dark-blue': 'bg-gray-700',
 }
 
 

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import NoteContext from "../../../context/NoteContext";
 import MainContext from "../../../context/MainContext";
 
+import colors from '../../UI/Colors';
+
 
 function SaveNoteButton(props) {
     const noteContext = useContext(NoteContext);
@@ -14,12 +16,11 @@ function SaveNoteButton(props) {
 
     // Обработчик сохранения заметки
     function saveNoteHandler() {
-        const colors = ['beige', 'blue', 'green', 'red', 'violet', 'dark-blue']
-
+        const colorsList = Object.keys(colors)
         mainContext.saveNote({
             id: noteContext.id,
             date: new Date().toISOString(),
-            color: colors[Math.floor(Math.random() * colors.length)],
+            color: colorsList[Math.floor(Math.random() * colorsList.length)],
             blocks: noteContext.blocks
         })
 

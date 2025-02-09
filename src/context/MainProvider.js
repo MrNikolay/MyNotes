@@ -1,14 +1,13 @@
 /* Компонент-обёртка над MainContext для управления состоянием списка существующих заметок и передачи этих данных в другие компоненты
     также он получает какие-то служебные фичи с App.js и передаёт их в дочерние компоненты
+
+   * А ещё здесь реализована сортировка заметок (во время сохранения изменений)
 */
 
 import { useEffect, useState } from "react";
 import MainContext from "./MainContext";
 
 function MainProvider(props) {
-    let notesData = JSON.parse(localStorage.getItem('notes'))
-    notesData = notesData ? notesData : []
-
     const [ notes, setNotes ] = useState(() => {
         let notesData = JSON.parse(localStorage.getItem('notes'));
         return notesData ? notesData : []
@@ -16,7 +15,7 @@ function MainProvider(props) {
 
     // При каждом изменении notes сохраняем актуальные данные в localStorage
     useEffect(() => {
-        console.log('сохраняем актуальные данные в localStorage...')
+        // const saveData = notes.sort((a, b) => new Date(b.date) - new Date(a.date));
         localStorage.setItem('notes', JSON.stringify(notes))
     }, [notes])
 
@@ -35,7 +34,7 @@ function MainProvider(props) {
                 ...notes.slice(index + 1)
             ])
         } else {
-            setNotes([...notes, note])
+            setNotes([note, ...notes])
         }
     }
 
