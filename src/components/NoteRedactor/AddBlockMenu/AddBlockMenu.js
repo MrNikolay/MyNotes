@@ -1,8 +1,12 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useContext, useRef } from 'react';
 
 import TypesMenu from './TypesMenu';
 
+import MainContext from '../../../context/MainContext';
+
 function AddBlockMenu() {
+    const mainContext = useContext(MainContext)
+
     const myDiv = useRef();
     const [ isMenuShown, setIsMenuShown ] = useState();
 
@@ -31,7 +35,7 @@ function AddBlockMenu() {
     return (
         <div ref={myDiv}>
             <button className="absolute h-full text-4xl cursor-pointer left-4" onClick={toggleClickHandler}>
-                <span className=''>+</span>
+                <span className={`${mainContext.isDarkThemeEnabled ? "text-white" : "text-softBlack"}`}>+</span>
             </button>
             { isMenuShown && <TypesMenu /> }
         </div>

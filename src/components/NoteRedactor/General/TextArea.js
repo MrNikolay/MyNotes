@@ -1,14 +1,16 @@
 import { useEffect, useRef, useContext } from 'react';
 
-import BlockContext from '../../../context/BlockContext';
+import MainContext from '../../../context/MainContext';
 import NoteContext from '../../../context/NoteContext';
+import BlockContext from '../../../context/BlockContext';
 
 
 function TextArea(props) {
     const textareaRef = useRef(null);
 
-    const blockContext = useContext(BlockContext);
+    const mainContext = useContext(MainContext);
     const noteContext = useContext(NoteContext);
+    const blockContext = useContext(BlockContext);
 
 
     const handleInput = (event) => {
@@ -60,7 +62,8 @@ function TextArea(props) {
         handleInput(); // Инициализация высоты при монтировании
     }, []);
 
-    const className = ` w-[95%] mx-auto overflow-hidden resize-none focus:outline-none placeholder:text-grayText bg-transparent text-softBlack ${props.className}`;
+    const textColors = mainContext.isDarkThemeEnabled ? "text-gray-100 placeholder:text-gray-350" : "text-softBlack placeholder:text-grayText"
+    const className = ` w-[95%] mx-auto overflow-hidden resize-none focus:outline-none bg-transparent ${textColors} ${props.className}`;
 
     return (
         <textarea

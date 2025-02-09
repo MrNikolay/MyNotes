@@ -11,7 +11,7 @@
 
 // tools
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // components
 import MainHeader from "./components/UI/MainHeader";
@@ -27,8 +27,24 @@ function App() {
   const [ isSettingsOpen, setIsSettingsOpen ] = useState(false);
   const [ isDarkThemeEnabled, setIsDarkThemeEnabled ] = useState(false);
 
+  useEffect(() => {
+    const body = document.body;
+    const lightBackground = "bg-gray-50";
+    const darkBackground = "bg-softBlack";
+
+    if(isDarkThemeEnabled) {
+      body.classList.remove(lightBackground);
+      body.classList.add(darkBackground)
+    } else {
+      body.classList.remove(darkBackground);
+      body.classList.add(lightBackground)
+    }
+  }, [isDarkThemeEnabled])
+
   const openSettings = () => setIsSettingsOpen(true);
   const closeSettings = () => setIsSettingsOpen(false);
+
+  const toggleTheme = () => setIsDarkThemeEnabled(prev => !prev);
 
 
   const contextValue = {openSettings, closeSettings, isDarkThemeEnabled}
@@ -36,7 +52,7 @@ function App() {
     <BrowserRouter>
       <MainProvider value={contextValue}>
         
-        {isSettingsOpen && <SettingsWindow/>}
+        {isSettingsOpen && <SettingsWindow isDarkThemeEnabled={isDarkThemeEnabled} toggleTheme={toggleTheme} />}
         <MainHeader />
 
         <Routes>
