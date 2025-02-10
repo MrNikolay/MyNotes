@@ -47,21 +47,23 @@ function NoteCardMenu(props) {
 
     let content;
 
+    const dateParagraphElement = <p className={`${mainContext.isDarkThemeEnabled ? "text-white" : "text-black"} text-right font-semibold mr-4 mb-1`}>{ props.date }</p>;
+
     // Определяем вид контента
     if (props.isFocused) {
         content = (
             <div>
                 <div className="flex absolute -top-2 left-2 gap-2">
-                    <TrashIcon {...iconsButtonsProps} onClick={deleteNoteHandler} />
-                    <PalleteIcon {...iconsButtonsProps} onClick={openPalletWindow} />
+                    <TrashIcon {...iconsButtonsProps} onClick={deleteNoteHandler} isDarkThemeEnabled={mainContext.isDarkThemeEnabled} />
+                    <PalleteIcon {...iconsButtonsProps} onClick={openPalletWindow} isDarkThemeEnabled={mainContext.isDarkThemeEnabled} />
                 </div>
                 <div>
-                    <p className="text-right font-semibold mr-4 mb-1">{ props.date }</p>
+                    {dateParagraphElement}
                 </div>
             </div>
         );
     } else {
-        content = <p className="text-right font-semibold mr-4 mb-1">{ props.date }</p>
+        content = dateParagraphElement
     }
 
     return (

@@ -2,7 +2,7 @@
 
 export default function(props) {
     // В зависимости от темы выбираем цвет для заливки
-    const color = props.theme == 'dark' ? 'white' : 'black';
+    const color = props.isDarkThemeEnabled ? 'white' : 'black';
 
     return (
         <svg 

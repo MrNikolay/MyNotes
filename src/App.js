@@ -25,9 +25,14 @@ import MainProvider from "./context/MainProvider"
 
 function App() {
   const [ isSettingsOpen, setIsSettingsOpen ] = useState(false);
-  const [ isDarkThemeEnabled, setIsDarkThemeEnabled ] = useState(false);
+  const [ isDarkThemeEnabled, setIsDarkThemeEnabled ] = useState(() => {
+    const isDarkThemeEnabled = localStorage.getItem('isDarkThemeEnabled');
+    return isDarkThemeEnabled == "true" ? true : false
+  });
 
   useEffect(() => {
+    // Изменяем цвет фона при изменении темы, а также сохраняем информацию в localStorage
+    localStorage.setItem('isDarkThemeEnabled', isDarkThemeEnabled);
     const body = document.body;
     const lightBackground = "bg-gray-50";
     const darkBackground = "bg-softBlack";
