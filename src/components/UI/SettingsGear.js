@@ -3,11 +3,13 @@ import { useContext } from "react";
 import MainContext from "../../context/MainContext";
 
 function SettingsGear(props) {
-    const icon = `/images/gear-settings-${props.color}.svg`;
+    const whiteIcon = `${process.env.PUBLIC_URL}/images/gear-settings-white.svg`
+    const blackIcon = `${process.env.PUBLIC_URL}/images/gear-settings-black.svg`
+
     const openSettingsHandler = useContext(MainContext).openSettings;
 
     return <img 
-        src={icon} 
+        src={props.color == 'white' ? whiteIcon : blackIcon} 
         className={`${props.className} hover:cursor-pointer`}
         onClick={openSettingsHandler}
     />;

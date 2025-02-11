@@ -13,12 +13,12 @@ function Footer() {
 
             <div className="flex justify-center gap-8 text-blue font-semibold text-lg mt-4">
                 <FooterLink href={githubHref}>
-                    <img src="/images/github-icon.png" className="w-10 -ml-2"/>
+                    <img src={`${process.env.PUBLIC_URL}/images/github-icon.png`} className="w-10 -ml-2"/>
                     <span className="ml-1">Code on GitHub</span>
                 </FooterLink>
                 
                 <FooterLink href={telegramHref}>
-                    <img src="/images/telegram-icon.png" className="w-10"/>
+                    <img src={`${process.env.PUBLIC_URL}/images/telegram-icon.png`} className="w-10"/>
                     <span>My Telegram</span>
                 </FooterLink>
             </div>
