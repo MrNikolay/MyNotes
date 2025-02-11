@@ -28,7 +28,7 @@ function ConfirmationWindowWrapper(props) {
                     onClick={props.onYes}
                 > Yes </button>
                 <button 
-                    className={`${buttonsBackground} ${textColor} text-white font-semibold px-8 py-1 text-xl transition-all hover:bg-blue hover:text-black`}
+                    className={`${buttonsBackground} ${textColor} font-semibold px-8 py-1 text-xl transition-all hover:bg-blue hover:text-black`}
                     onClick={props.onClose}
                 > No </button>
             </div>

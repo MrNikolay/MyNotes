@@ -1,8 +1,8 @@
 import FooterLink from "./FooterLink";
 
 function Footer() {
-    const githubHref = "https://github.com/USERNAME/REPO";
-    const telegramHref = "https://t.me/USERNAME"
+    const githubHref = "https://github.com/MrNikolay/MyNotes";
+    const telegramHref = "https://t.me/Nikolay_Achiever"
 
     return (
         <footer className="bg-gray-800 w-full py-4">
