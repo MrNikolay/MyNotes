@@ -24,6 +24,8 @@ import MainProvider from "./context/MainProvider"
 
 
 function App() {
+  const basename = "/MyNotes";  // базовый маршрут для react-router
+
   const [ isSettingsOpen, setIsSettingsOpen ] = useState(false);
   const [ isDarkThemeEnabled, setIsDarkThemeEnabled ] = useState(() => {
     const isDarkThemeEnabled = localStorage.getItem('isDarkThemeEnabled');
@@ -54,7 +56,7 @@ function App() {
 
   const contextValue = {openSettings, closeSettings, isDarkThemeEnabled}
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <MainProvider value={contextValue}>
         
         {isSettingsOpen && <SettingsWindow isDarkThemeEnabled={isDarkThemeEnabled} toggleTheme={toggleTheme} />}
