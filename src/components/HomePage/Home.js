@@ -10,10 +10,10 @@ import Footer from "./Footer/Footer";
 
 
 function Home() {
-    const { notes } = useContext(MainContext);
+    const { notes, isDarkThemeEnabled } = useContext(MainContext);
 
     const messageIfNoNotes = (
-            <h1 className="mt-36 font-bold text-4xl text-softBlack text-center leading-relaxed">
+            <h1 className={`mt-36 font-bold text-4xl ${isDarkThemeEnabled ? "text-white" : "text-softBlack"} text-center leading-relaxed`}>
                 You don't have any notes yet <br />Write your first one!
             </h1>
     )
