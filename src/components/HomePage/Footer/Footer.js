@@ -2,7 +2,8 @@ import FooterLink from "./FooterLink";
 
 function Footer() {
     const githubHref = "https://github.com/MrNikolay/MyNotes";
-    const telegramHref = "https://t.me/Nikolay_Achiever"
+    // https://t.me/Nikolay_Achiever
+    const telegramHref = "#"
 
     return (
         <footer className="bg-gray-800 w-full py-4">
@@ -19,7 +20,7 @@ function Footer() {
                 
                 <FooterLink href={telegramHref}>
                     <img src={`${process.env.PUBLIC_URL}/images/telegram-icon.png`} className="w-10"/>
-                    <span>My Telegram</span>
+                    <span>My Telegram (деактивирован)</span>
                 </FooterLink>
             </div>
         </footer>
