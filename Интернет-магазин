@@ -9,18 +9,25 @@ class Product {
   String category;
   int price;
   String description;
+  String imageUrl;
   Color color;
 
-  Product(this.name, this.category, this.price, this.description, this.color);
+  Product(this.name, this.category, this.price, this.description, this.imageUrl, this.color);
 }
 
 List<Product> products = [
-  Product('Чистящий гель', 'Кухня', 350, 'Удаляет жир', Colors.blue),
-  Product('Средство для посуды', 'Кухня', 180, 'Густая формула', Colors.green),
-  Product('Освежитель воздуха', 'Дом', 220, 'Морской бриз', Colors.orange),
-  Product('Пятновыводитель', 'Стирка', 420, 'Удаляет пятна', Colors.red),
-  Product('Кондиционер для белья', 'Стирка', 290, 'Аромат лаванды', Colors.purple),
-  Product('Универсальный спрей', 'Дом', 310, 'Очищает всё', Colors.teal),
+  Product('Чистящий гель', 'Кухня', 350, 'Удаляет жир',
+      'https://picsum.photos/id/10/400/400', Colors.blue),
+  Product('Средство для посуды', 'Кухня', 180, 'Густая формула',
+      'https://picsum.photos/id/20/400/400', Colors.green),
+  Product('Освежитель воздуха', 'Дом', 220, 'Морской бриз',
+      'https://picsum.photos/id/30/400/400', Colors.orange),
+  Product('Пятновыводитель', 'Стирка', 420, 'Удаляет пятна',
+      'https://picsum.photos/id/40/400/400', Colors.red),
+  Product('Кондиционер для белья', 'Стирка', 290, 'Аромат лаванды',
+      'https://picsum.photos/id/50/400/400', Colors.purple),
+  Product('Универсальный спрей', 'Дом', 310, 'Очищает всё',
+      'https://picsum.photos/id/60/400/400', Colors.teal),
 ];
 
 class CartItem {
@@ -148,14 +155,22 @@ class CatalogPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: Container(
-                      width: double.infinity,
-                      color: p.color.withOpacity(0.3),
-                      child: Center(
-                        child: Text('Фото', style: TextStyle(color: p.color)),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        p.imageUrl,
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                        errorBuilder: (ctx, error, stack) => Container(
+                          color: p.color.withOpacity(0.3),
+                          child: Center(
+                            child: Icon(Icons.broken_image, color: p.color),
+                          ),
+                        ),
                       ),
                     ),
                   ),
+                  SizedBox(height: 4),
                   Text(p.name,
                       textAlign: TextAlign.center,
                       style: TextStyle(fontWeight: FontWeight.bold)),
@@ -188,13 +203,22 @@ class DetailPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
-              height: 200,
-              width: double.infinity,
-              color: product.color.withOpacity(0.3),
-              child: Center(
-                child: Text('Фото товара',
-                    style: TextStyle(fontSize: 24, color: product.color)),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.network(
+                product.imageUrl,
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (ctx, error, stack) => Container(
+                  height: 200,
+                  width: double.infinity,
+                  color: product.color.withOpacity(0.3),
+                  child: Center(
+                    child: Icon(Icons.broken_image,
+                        size: 48, color: product.color),
+                  ),
+                ),
               ),
             ),
             SizedBox(height: 16),
@@ -260,11 +284,20 @@ class CartPage extends StatelessWidget {
               var item = cart[i];
               return Card(
                 child: ListTile(
-                  leading: Container(
-                    width: 50,
-                    height: 50,
-                    color: item.product.color.withOpacity(0.5),
-                    child: Center(child: Text('Ф')),
+                  leading: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.network(
+                      item.product.imageUrl,
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                      errorBuilder: (ctx, error, stack) => Container(
+                        width: 50,
+                        height: 50,
+                        color: item.product.color.withOpacity(0.5),
+                        child: Center(child: Text('Ф')),
+                      ),
+                    ),
                   ),
                   title: Text(item.product.name),
                   subtitle: Text('${item.product.price} руб.'),
